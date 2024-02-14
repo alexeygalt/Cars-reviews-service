@@ -1,0 +1,808 @@
+{
+	"info": {
+		"_postman_id": "0fe7ca72-2701-4f3d-8be4-67babda8896f",
+		"name": "Reviews API",
+		"description": "## 🔖 **How to use this template**\n\n#### **Step 1: Login**\n\nИспользовать token/login для получения токена.  \nДалее использовать полученный токен в корневом блоке Authorization(Bearer Token)\n\n#### **Step 2: View responses**\n\nEXPORT Возможные значения переменной model_name = (Country, Manufacturer, Car, Comment)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21819750"
+	},
+	"item": [
+		{
+			"name": "country crud",
+			"item": [
+				{
+					"name": "get all countries",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/country/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"country",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "get country by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/country/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"country",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Germany\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/country/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"country",
+								"create",
+								""
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "update country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful PUT request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"new country\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/country/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"country",
+								"1",
+								""
+							]
+						},
+						"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "delete country",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/country/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"country",
+								"1",
+								""
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "manufacturer crud",
+			"item": [
+				{
+					"name": "get all manufactures",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/manufacturer/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"manufacturer",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get manufacturer by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/manufacturer/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"manufacturer",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create manufacturer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\" : \"VW\",\n\"country\" : 1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/manufacturer/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"manufacturer",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update manufacturer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\" : \"new_name\",\n\"country\" : 1}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/manufacturer/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"manufacturer",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete manufacturer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/manufacturer/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"manufacturer",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "car crud",
+			"item": [
+				{
+					"name": "get all cars",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/car/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"car",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get car by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/car/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"car",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create new car",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Passat\",\n  \"start_year\": 2010,\n  \"end_year\": 2015,\n  \"manufacturer\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/car/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"car",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update car",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Passat+\",\n  \"start_year\": 2010,\n  \"end_year\": 2015,\n  \"manufacturer\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/car/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"car",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/car/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"car",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "comment crud",
+			"item": [
+				{
+					"name": "get all comments",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/comment/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get comment by id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/comment/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"comment",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"author_email\": \"user@example.com\",\n  \"comment\": \"test\",\n  \"car\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/comment/create/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"comment",
+								"create",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"author_email\": \"user@example.com\",\n  \"comment\": \"new_comment\",\n  \"car\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/comment/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"comment",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/{{prefix}}/comment/1/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"{{prefix}}",
+								"comment",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "token",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "export",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/{{prefix}}/export/{{model_name}}/?key=csv",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{prefix}}",
+						"export",
+						"{{model_name}}",
+						""
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "csv",
+							"description": "csv or xlsx (default csv)"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzA3OTE2ODY2LCJpYXQiOjE3MDc5MTMyNjYsImp0aSI6ImEyYmQxMzU3MDE4YzRlNjk5YTQwOTZjYjc0ZTNmYWNjIiwidXNlcl9pZCI6Mn0.L8XZLFSxXejnZcNXTo034LgVvUk9ylGWBeeTEgbyiWs",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "prefix",
+			"value": "api"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost"
+		},
+		{
+			"key": "model_name",
+			"value": "car",
+			"type": "string"
+		}
+	]
+}

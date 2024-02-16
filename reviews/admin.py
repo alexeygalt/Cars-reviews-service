@@ -48,7 +48,7 @@ class CarAdmin(admin.ModelAdmin):
 
 
 @admin.register(Country)
-class CarAdmin(admin.ModelAdmin):
+class CountryAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",

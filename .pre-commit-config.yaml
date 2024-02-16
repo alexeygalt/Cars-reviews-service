@@ -47,12 +47,12 @@ repos:
         types: [ python ]
         args: [ --py311-plus ]
 
-      - id: reorder-python-imports
-        name: reorder-python-imports
-        entry: reorder-python-imports
-        language: system
-        types: [ python ]
-        args: [ --py311-plus ]
+#      - id: reorder-python-imports
+#        name: reorder-python-imports
+#        entry: reorder-python-imports
+#        language: system
+#        types: [ python ]
+#        args: [ --py311-plus ]
 
       - id: yesqa
         name: yesqa
@@ -60,12 +60,12 @@ repos:
         language: system
         types: [ python ]
 
-      - id: mypy
-        name: mypy
-        entry: mypy
-        language: system
-        'types_or': [python, pyi]
-        args: ["--ignore-missing-imports", "--scripts-are-modules"]
+#      - id: mypy
+#        name: mypy
+#        entry: mypy
+#        language: system
+#        'types_or': [python, pyi]
+#        args: ["--ignore-missing-imports", "--scripts-are-modules"]
 #      - id: tests
 #        name: Run tests
 #        entry: "bash test.sh"

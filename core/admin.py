@@ -7,7 +7,7 @@ from core.models import User
 
 
 @admin.register(User)
-class UserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin):
     list_display = (
         "id",
         "email_link",

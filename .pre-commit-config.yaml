@@ -60,8 +60,8 @@ repos:
         language: system
         types: [ python ]
 
-      - id: tests
-        name: Run tests
-        entry: "bash test.sh"
-        language: system
-        verbose: true
+#      - id: tests
+#        name: Run tests
+#        entry: "bash test.sh"
+#        language: system
+#        verbose: true

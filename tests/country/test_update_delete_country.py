@@ -1,5 +1,6 @@
-import pytest
 import json
+
+import pytest
 from django.urls import reverse
 
 
@@ -28,8 +29,6 @@ def test_update_country_no_auth(client, country):
 
 @pytest.mark.django_db
 def test_delete_country(auth_client, country):
-    response = auth_client.delete(
-        reverse("retrieve_update_destroy_county", args=[country.pk])
-    )
+    response = auth_client.delete(reverse("retrieve_update_destroy_county", args=[country.pk]))
 
     assert response.status_code == 204

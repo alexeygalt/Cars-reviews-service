@@ -1,13 +1,12 @@
 import pytest
 from django.urls import reverse
+
 from reviews.serializers import ManufacturerRetrieveSerializer
 
 
 @pytest.mark.django_db
 def test_retrieve_manufacturer(client, manufacturer):
-    response = client.get(
-        reverse("retrieve_update_destroy_manufacturer", args=[manufacturer.pk])
-    )
+    response = client.get(reverse("retrieve_update_destroy_manufacturer", args=[manufacturer.pk]))
 
     expected_response = ManufacturerRetrieveSerializer(instance=manufacturer).data
 

@@ -1,5 +1,8 @@
 from rest_framework import serializers
-from reviews.models import Car, Manufacturer, Comment
+
+from reviews.models import Car
+from reviews.models import Comment
+from reviews.models import Manufacturer
 from reviews.validators import validate_year_range
 
 

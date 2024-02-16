@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from reviews.models import Country, Manufacturer
+
+from reviews.models import Country
+from reviews.models import Manufacturer
 
 
 class ManufacturerToCountrySerializer(serializers.ModelSerializer):
@@ -15,9 +17,7 @@ class CountryBaseSerializer(serializers.ModelSerializer):
 
 
 class CountryRetrieveSerializer(serializers.ModelSerializer):
-    manufacturers = ManufacturerToCountrySerializer(
-        many=True, read_only=True, source="manufacturer_set"
-    )
+    manufacturers = ManufacturerToCountrySerializer(many=True, read_only=True, source="manufacturer_set")
 
     class Meta:
         model = Country

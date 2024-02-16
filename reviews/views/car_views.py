@@ -1,12 +1,12 @@
-from drf_spectacular.utils import extend_schema, extend_schema_view
-from rest_framework.generics import (
-    CreateAPIView,
-    ListAPIView,
-    RetrieveUpdateDestroyAPIView,
-)
-from reviews.models import Car
+from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema_view
+from rest_framework.generics import CreateAPIView
+from rest_framework.generics import ListAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+
 from reviews import serializers
+from reviews.models import Car
 
 
 @extend_schema(

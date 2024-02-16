@@ -1,7 +1,9 @@
-from abc import ABC, abstractmethod
+from abc import ABC
+from abc import abstractmethod
+
+import facebook
 from google.auth.transport.requests import Request
 from google.oauth2 import id_token
-import facebook
 from rest_framework.exceptions import ValidationError
 
 

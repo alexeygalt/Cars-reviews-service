@@ -1,15 +1,14 @@
 import pytest
 from rest_framework.test import APIClient
-from core.models import User
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from core.models import User
 from tests import factories
 
 
 @pytest.fixture
 def new_user(db):
-    user = User.objects.create_user(
-        username="testname", email="test@mail.ru", password="testSuper1Password"
-    )
+    user = User.objects.create_user(username="testname", email="test@mail.ru", password="testSuper1Password")
     return user
 
 

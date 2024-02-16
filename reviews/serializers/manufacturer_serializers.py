@@ -1,5 +1,7 @@
 from rest_framework import serializers
-from reviews.models import Manufacturer, Car
+
+from reviews.models import Car
+from reviews.models import Manufacturer
 from reviews.serializers.car_serializers import CarRetrieveSerializer
 from reviews.serializers.country_serializers import CountryBaseSerializer
 

@@ -1,5 +1,6 @@
-import pytest
 import json
+
+import pytest
 from django.urls import reverse
 
 
@@ -29,8 +30,6 @@ def test_update_manufacturer_no_auth(client, manufacturer):
 
 @pytest.mark.django_db
 def test_delete_manufacturer(auth_client, manufacturer):
-    response = auth_client.delete(
-        reverse("retrieve_update_destroy_manufacturer", args=[manufacturer.pk])
-    )
+    response = auth_client.delete(reverse("retrieve_update_destroy_manufacturer", args=[manufacturer.pk]))
 
     assert response.status_code == 204

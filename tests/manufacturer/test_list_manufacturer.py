@@ -1,5 +1,6 @@
 import pytest
 from django.urls import reverse
+
 from reviews.serializers import ManufacturerRetrieveSerializer
 from tests import factories
 
@@ -10,9 +11,7 @@ def test_list_manufacturer(client, new_user):
 
     response = client.get(reverse("list_manufacturer"))
 
-    expected_response = ManufacturerRetrieveSerializer(
-        instance=manufacturers, many=True
-    ).data
+    expected_response = ManufacturerRetrieveSerializer(instance=manufacturers, many=True).data
 
     assert response.status_code == 200
     assert response.data == expected_response

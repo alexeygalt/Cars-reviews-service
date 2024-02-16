@@ -1,8 +1,9 @@
 from django.contrib import admin
-from core.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
+
+from core.models import User
 
 
 @admin.register(User)
@@ -48,7 +49,7 @@ class UserAdmin(UserAdmin):
 
     def email_link(self, user: User):
         url = reverse("admin:core_user_change", args=[user.id])
-        link = '<a href="%s">%s</a>' % (url, user.email)
+        link = f'<a href="{url}">{user.email}</a>'
         return mark_safe(link)
 
     email_link.short_description = "Адрес электронной почты"

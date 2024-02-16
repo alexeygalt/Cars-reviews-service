@@ -1,8 +1,11 @@
 from django.contrib import admin
-from django.urls import path, include
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from main import settings
 from django.shortcuts import redirect
+from django.urls import include
+from django.urls import path
+from drf_spectacular.views import SpectacularAPIView
+from drf_spectacular.views import SpectacularSwaggerView
+
+from main import settings
 
 urlpatterns = [
     path("docs/schema/", SpectacularAPIView.as_view(), name="schema"),

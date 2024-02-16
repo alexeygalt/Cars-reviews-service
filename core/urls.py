@@ -1,7 +1,11 @@
 from django.urls import path
-from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
-from core.views import UserRegistrationView, GetMe
-from core.social_auth.views import GoogleSocialAuthView, FacebookSocialAuthView
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+
+from core.social_auth.views import FacebookSocialAuthView
+from core.social_auth.views import GoogleSocialAuthView
+from core.views import GetMe
+from core.views import UserRegistrationView
 
 
 urlpatterns = [

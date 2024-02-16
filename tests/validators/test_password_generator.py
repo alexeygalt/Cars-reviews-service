@@ -1,8 +1,10 @@
-import pytest
 import string
+
+import pytest
+from rest_framework.exceptions import ValidationError
+
 from core.social_auth.utils import password_generator
 from reviews.validators import validate_year_range
-from rest_framework.exceptions import ValidationError
 
 
 @pytest.mark.parametrize(

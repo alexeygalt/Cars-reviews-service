@@ -1,6 +1,7 @@
 from django.urls import path
-from reviews import views
 from django.views.decorators.cache import cache_page
+
+from reviews import views
 
 urlpatterns = [
     path("country/create/", views.CreateCountryView.as_view(), name="create_country"),

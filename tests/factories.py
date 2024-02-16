@@ -1,9 +1,14 @@
-import factory
 import random
 import string
-from core.models import User
-from reviews.models import Country, Manufacturer, Car, Comment
 from datetime import datetime
+
+import factory
+
+from core.models import User
+from reviews.models import Car
+from reviews.models import Comment
+from reviews.models import Country
+from reviews.models import Manufacturer
 
 
 def generate_name():

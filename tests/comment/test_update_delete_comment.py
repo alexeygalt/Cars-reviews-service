@@ -1,5 +1,6 @@
-import pytest
 import json
+
+import pytest
 from django.urls import reverse
 
 
@@ -7,9 +8,7 @@ from django.urls import reverse
 def test_update_comment(auth_client, comment, car):
     response = auth_client.put(
         reverse("retrieve_update_delete_comment", args=[comment.pk]),
-        data=json.dumps(
-            {"author_email": "test@test.com", "car": car.id, "comment": "test"}
-        ),
+        data=json.dumps({"author_email": "test@test.com", "car": car.id, "comment": "test"}),
         content_type="application/json",
     )
 
@@ -22,9 +21,7 @@ def test_update_comment(auth_client, comment, car):
 def test_update_comment_no_auth(client, comment, car):
     response = client.put(
         reverse("retrieve_update_delete_comment", args=[comment.pk]),
-        data=json.dumps(
-            {"author_email": "test@test.com", "car": car.id, "comment": "test"}
-        ),
+        data=json.dumps({"author_email": "test@test.com", "car": car.id, "comment": "test"}),
         content_type="application/json",
     )
 
@@ -33,9 +30,7 @@ def test_update_comment_no_auth(client, comment, car):
 
 @pytest.mark.django_db
 def test_delete_comment(auth_client, comment):
-    response = auth_client.delete(
-        reverse("retrieve_update_delete_comment", args=[comment.pk])
-    )
+    response = auth_client.delete(reverse("retrieve_update_delete_comment", args=[comment.pk]))
 
     assert response.status_code == 204
 

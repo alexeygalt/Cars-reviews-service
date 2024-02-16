@@ -1,14 +1,14 @@
-from drf_spectacular.utils import extend_schema, extend_schema_view
-from rest_framework.generics import (
-    CreateAPIView,
-    RetrieveUpdateDestroyAPIView,
-    ListAPIView,
-)
-from reviews.models import Comment
-from rest_framework.permissions import IsAuthenticated
-from reviews import serializers
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema_view
 from rest_framework import filters
+from rest_framework.generics import CreateAPIView
+from rest_framework.generics import ListAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
+
+from reviews import serializers
+from reviews.models import Comment
 
 
 @extend_schema(

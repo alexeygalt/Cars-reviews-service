@@ -1,11 +1,10 @@
 from drf_spectacular.utils import extend_schema
 from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.generics import GenericAPIView
-from core.social_auth.serializers import (
-    GoogleSocialAuthSerializer,
-    FacebookSocialAuthSerializer,
-)
+from rest_framework.response import Response
+
+from core.social_auth.serializers import FacebookSocialAuthSerializer
+from core.social_auth.serializers import GoogleSocialAuthSerializer
 
 
 @extend_schema(

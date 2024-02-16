@@ -1,7 +1,11 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
-from reviews.models import Comment, Car, Manufacturer, Country
 from django.urls import reverse
+from django.utils.safestring import mark_safe
+
+from reviews.models import Car
+from reviews.models import Comment
+from reviews.models import Country
+from reviews.models import Manufacturer
 
 
 @admin.register(Comment)
@@ -17,7 +21,7 @@ class CommentAdmin(admin.ModelAdmin):
 
     def car_link(self, comment):
         url = reverse("admin:reviews_car_change", args=[comment.car.id])
-        link = '<a href="%s">%s</a>' % (url, comment.car.__str__())
+        link = f'<a href="{url}">{comment.car.__str__()}</a>'
         return mark_safe(link)
 
     car_link.short_description = "Авто"
@@ -37,7 +41,7 @@ class CarAdmin(admin.ModelAdmin):
 
     def manufacturer_link(self, car: Car):
         url = reverse("admin:reviews_manufacturer_change", args=[car.manufacturer.id])
-        link = '<a href="%s">%s</a>' % (url, car.manufacturer.__str__())
+        link = f'<a href="{url}">{car.manufacturer.__str__()}</a>'
         return mark_safe(link)
 
     manufacturer_link.short_description = "Производитель"
@@ -67,7 +71,7 @@ class CarAdmin(admin.ModelAdmin):
 
     def country_link(self, manufacturer: Manufacturer):
         url = reverse("admin:reviews_country_change", args=[manufacturer.country.id])
-        link = '<a href="%s">%s</a>' % (url, manufacturer.country.__str__())
+        link = f'<a href="{url}">{manufacturer.country.__str__()}</a>'
         return mark_safe(link)
 
     country_link.short_description = "Страна"

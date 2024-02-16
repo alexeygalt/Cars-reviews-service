@@ -1,12 +1,14 @@
 import csv
+
 import openpyxl
-from django.http import HttpResponse
-from rest_framework.views import APIView
 from django.apps import apps
-from drf_spectacular.utils import extend_schema, OpenApiParameter
-from drf_spectacular.types import OpenApiTypes
 from django.db import models
+from django.http import HttpResponse
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import OpenApiParameter
 from rest_framework.exceptions import ValidationError
+from rest_framework.views import APIView
 
 
 @extend_schema(
@@ -41,9 +43,7 @@ class ExportCSVView(APIView):
 
     def export_csv(self, model_name):
         response = HttpResponse(content_type="text/csv")
-        response[
-            "Content-Disposition"
-        ] = f'attachment; filename="{model_name}_export.csv"'
+        response["Content-Disposition"] = f'attachment; filename="{model_name}_export.csv"'
 
         writer = csv.writer(response)
 
@@ -60,12 +60,8 @@ class ExportCSVView(APIView):
         return response
 
     def export_xlsx(self, model_name):
-        response = HttpResponse(
-            content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        )
-        response[
-            "Content-Disposition"
-        ] = f'attachment; filename="{model_name}_export.xlsx"'
+        response = HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response["Content-Disposition"] = f'attachment; filename="{model_name}_export.xlsx"'
         wb = openpyxl.Workbook()
         ws = wb.active
 

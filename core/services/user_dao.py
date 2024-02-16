@@ -1,19 +1,21 @@
-from typing import Iterable, Optional, List
+from collections.abc import Iterable
+
 from rest_framework.exceptions import AuthenticationFailed
-from core.social_auth.utils import password_generator
 from rest_framework_simplejwt.tokens import RefreshToken
+
 from core.models import User
+from core.social_auth.utils import password_generator
 
 
 class UserDAO:
     """Base class for working with a User model"""
 
-    def get_user_by_id(self, id: int) -> Optional[User]:
+    def get_user_by_id(self, id: int) -> User | None:
         if not User.objects.filter(id=id).exists():
             return None
         return User.objects.get(id=id)
 
-    def get_all_users(self) -> List[User]:
+    def get_all_users(self) -> list[User]:
         return User.objects.all()
 
     def update_is_active(self, users_ids: Iterable[int], is_active: bool) -> None:
@@ -46,15 +48,11 @@ class UserDAO:
                     "tokens": UserDAO._get_tokens_for_user(user),
                 }
             else:
-                raise AuthenticationFailed(
-                    detail="Please continue your login using " + user.auth_provider
-                )
+                raise AuthenticationFailed(detail="Please continue your login using " + user.auth_provider)
 
         else:
             user_password = password_generator()
-            user = UserDAO._create_social_user(
-                email=email, provider=provider, password=user_password
-            )
+            user = UserDAO._create_social_user(email=email, provider=provider, password=user_password)
             return {
                 "email": user.email,
                 "password": user_password,
